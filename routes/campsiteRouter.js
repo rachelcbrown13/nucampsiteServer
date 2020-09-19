@@ -6,6 +6,7 @@ const campsiteRouter = express.Router();
 
 campsiteRouter.use(bodyParser.json());
 
+/////////////////Campsite Router/////////////////////
 campsiteRouter.route('/')
 .get((req, res, next) => {
     Campsite.find()
@@ -40,6 +41,7 @@ campsiteRouter.route('/')
     .catch(err => next(err));
 });
 
+////////////////Individual Campsite///////////////////
 campsiteRouter.route('/:campsiteId')
 .get((req, res, next) => {
     Campsite.findById(req.params.campsiteId)
@@ -75,7 +77,7 @@ campsiteRouter.route('/:campsiteId')
     .catch(err => next(err));
 });
 
-//Campsite Id Router
+////////////////////Campsite Comments Router/////////////////////
 
 campsiteRouter.route('/:campsiteId/comments')
 .get((req, res, next) => {
@@ -139,6 +141,8 @@ campsiteRouter.route('/:campsiteId/comments')
     })
     .catch(err => next(err));
 });
+
+///////////////////Individual Comments/////////////////////////
 
 campsiteRouter.route('/:campsiteId/comments/:commentId')
 .get((req, res, next) => {
