@@ -11,7 +11,7 @@ partnerRouter.use(bodyParser.json());
 partnerRouter.route('/')
 .options(cors.corsWithOptions, (req, res) => res.sendStatus(200))
 .get(cors.cors, (req, res, next) => {
-    Partner.find()
+    Partner.find( {user: new ObjectId(req.user.id)})
     .then(partners => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
